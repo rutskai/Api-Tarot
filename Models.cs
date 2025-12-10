@@ -20,4 +20,9 @@ public class Card
     [JsonPropertyName("arquetipo")]
     public string Arquetipo { get; set; } ="";
 }
+
+ public class RandomCardResponse
+    {
+        public Card? CardSelected { get; set; }
+    }
 }
