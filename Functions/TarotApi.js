@@ -1,8 +1,9 @@
 const express = require("express");
 const fs = require("fs");
+const bodyParser = require("body-parser");
 
 const app = express();
-app.use(express.json());
+app.use(bodyParser.json());
 
 const FILE_PATH = "tarot.json";
 
@@ -127,43 +128,41 @@ app.get("/tarot", (req, res) => {
   res.json(cards);
 });
 
-app.get("/tarot/:id", (req, res) => {
-  const id = parseInt(req.params.id);
-  const card = cards.find((c) => c.id === id);
-  if (!card) return res.status(404).json({ error: "Carta no encontrada" });
-  res.json(card);
-});
-
 app.get("/tarot/random", (req, res) => {
-  const randomCard = cards[Math.floor(Math.random() * cards.length)];
-  res.json(randomCard);
+  if (cards.length === 0) {
+    return res.status(404).json({ error: "No hay cartas disponibles" });
+  }
+
+  const randomIndex = Math.floor(Math.random() * cards.length);
+   const randomCard = cards[randomIndex];
+   randomCard.estado = "utilizada";
+
+  res.json({ CardSelected: randomCard });
 });
 
-app.put("/tarot/:id", (req, res) => {
-  const id = parseInt(req.params.id);
-  const card = cards.find(c => c.id === id);
+app.get("/tarot/utilizadas", (req, res) => {
+  if (cards.length === 0) {
+    return res.status(404).json({ error: "No hay cartas disponibles" });
+  }
+
+   const utilizadas = cards.filter(card => card.estado === "utilizada");
+
+  res.json(utilizadas);
+});
+
+app.put("/tarot/update", (req, res) => {
+  const data = req.body;
+  const card = cards.find((c) => c.id === data.id);
   if (!card) return res.status(404).json({ error: "Carta no encontrada" });
 
   const validFields = ["nombre", "significado", "palabraClave", "arquetipo"];
-  validFields.forEach(field => {
-    if (req.body.hasOwnProperty(field)) card[field] = req.body[field];
+  validFields.forEach((field) => {
+    if (data[field]) card[field] = data[field];
   });
 
   fs.writeFileSync(FILE_PATH, JSON.stringify(cards, null, 2), "utf-8");
-  res.json({ message: "Carta actualizada", updated: card });
-});
 
-
-app.delete("/tarot/:id", (req, res) => {
-  const id = parseInt(req.params.id);
-  const index = cards.findIndex((c) => c.id === id);
-  if (index === -1)
-    return res.status(404).json({ error: "Carta no encontrada" });
-
-  cards.splice(index, 1)[0];
-  fs.writeFileSync(FILE_PATH, JSON.stringify(cards, null, 2), "utf-8");
-
-  res.json({ message: `Carta con id ${id} eliminada` });
+  res.json({ mensaje: "Carta actualizada", actualizado: card });
 });
 
 app.listen(3000, () => {
