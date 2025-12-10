@@ -1,22 +1,33 @@
-
 using Models;
+using System.Net.Http.Json;
+
+
 namespace Functions
 {
     class SelectionCard
     {
-        public static Random random = new Random();
-        public static Card GetSelectionCard(List<Card> cards)
-        {
+        private static readonly HttpClient client = new HttpClient();
 
-            if (!Validations.IsValid(cards))
+        public static async Task<Card> GetSelectionCardAsync()
+        {
+            try
             {
-                Console.WriteLine("Aviso: la lista de cartas no es válida o está vacía.");
+                RandomCardResponse? response = await client.GetFromJsonAsync<RandomCardResponse>("http://localhost:3000/tarot/random");
+
+                if (response?.CardSelected == null)
+                {
+                    Console.WriteLine("No se pudo obtener la carta desde el servidor.");
+                    return new Card();
+                }
+
+                return response.CardSelected;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al obtener carta aleatoria: {ex.Message}");
                 return new Card();
             }
-
-            int index = random.Next(cards.Count);
-            return cards[index];
-
         }
     }
+   
 }

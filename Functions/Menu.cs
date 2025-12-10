@@ -1,3 +1,6 @@
+using static Validations.GeneralValidation;
+using static Validations.ValidationOptions;
+
 namespace Functions
 {
     class Menu
@@ -10,16 +13,16 @@ namespace Functions
             {
             Console.WriteLine("\n=== ♱ Predicción de futuro ♱ ===");
             Console.WriteLine("Cuál es tu nombre?");
-            name = Validations.IsValid(Console.ReadLine() ?? "");
+            name = IsValid(Console.ReadLine() ?? "");
             Console.WriteLine($"\nEncantado/a {name}!");
             }
 
             Console.WriteLine($"\nVamos a predecir tu futuro! Presiona enter para iniciar la tirada.");
             Console.ReadLine();
 
-            var selectedCard = SelectionCard.GetSelectionCard(cards);
+            var selectedCard = await SelectionCard.GetSelectionCardAsync();
 
-            if (!Validations.IsValid(selectedCard))
+            if (!IsValid(selectedCard))
             {
                 
                 Console.WriteLine("Error al acceder a los datos.");
@@ -32,7 +35,7 @@ namespace Functions
             Console.WriteLine(  GeneratePrediction.GetPrediction(name, cards, selectedCard));
 
             Console.WriteLine("Deseas realizar otra tirada? (s/n)");
-            string option= Validations.IsValidOption(Console.ReadLine() ?? "");
+            string option= IsValidOption(Console.ReadLine() ?? "");
 
             if (option == "s")
             {

@@ -1,4 +1,5 @@
 using Models;
+using static Validations.GeneralValidation;
 
 namespace Functions
 {
@@ -7,7 +8,7 @@ namespace Functions
         public static Random random = new Random();
         public static string GetPrediction(string userName, List<Models.Card> cards, Card selectedCard)
         {
-            if (!Validations.IsValid(cards) || !Validations.IsValid(selectedCard))
+            if (!IsValid(cards) || !IsValid(selectedCard))
             {
                 return "\nError al acceder a los datos.";
             }
