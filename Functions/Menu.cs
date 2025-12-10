@@ -5,8 +5,21 @@ namespace Functions
 {
     class Menu
     {
+
+            /**
+         * Muestra el menú principal de la aplicación de tarot.
+         * Solicita el nombre del usuario, inicia la tirada de cartas
+         * y muestra la carta seleccionada junto con su significado y predicción.
+         * Permite realizar múltiples tiradas hasta que el usuario decida salir.
+         * 
+         * @param name (opcional) Nombre del usuario. La primera vez se solicita el nombre por consola, si se decide
+         * jugar otra vez, no se vuelve a solicitar el nombre.
+         */
+
         public static async Task GetMenu(string? name = null)
         {
+             await ResetDeck();
+
              var cards = await GetApi.GetApiTarot();
 
             if (string.IsNullOrEmpty(name))

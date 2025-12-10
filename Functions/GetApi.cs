@@ -5,6 +5,15 @@ namespace Functions
 {
     class GetApi
     {
+         /**
+         * Obtiene la lista de cartas del tarot desde la API local.
+         * Realiza una petición HTTP GET al endpoint http://localhost:3000/tarot,
+         * deserializa la respuesta JSON a una lista de objetos Card y valida los datos.
+         * 
+         * @return List< Models.Card> Una lista de cartas del tarot. Si ocurre un error en la petición
+         *         o la validación falla, retorna una lista vacía.
+         */
+
         public static async Task<List<Models.Card>> GetApiTarot()
         {
             try

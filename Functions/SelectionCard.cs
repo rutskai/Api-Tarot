@@ -8,6 +8,15 @@ namespace Functions
     {
         private static readonly HttpClient client = new HttpClient();
 
+         /**
+         * Obtiene una carta aleatoria desde la API del tarot.
+         * Realiza una petición GET al endpoint http://localhost:3000/tarot/random
+         * y devuelve la carta seleccionada.
+         * 
+         * @return Card La carta seleccionada aleatoriamente. Si ocurre un error
+         *              o la API no devuelve datos válidos, retorna una carta vacía.
+         */
+
         public static async Task<Card> GetSelectionCardAsync()
         {
             try

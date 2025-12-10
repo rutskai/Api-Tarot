@@ -3,6 +3,17 @@ using static Validations.GeneralValidation;
 
 namespace Functions
 {
+
+       /**
+     * Genera una predicción personalizada y aleatoria para un usuario basada en una carta seleccionada
+     * y en la lista de cartas disponibles.
+     *
+     * @param userName El nombre del usuario al que se le hará la predicción.
+     * @param cards Lista de cartas disponibles para la predicción.
+     * @param selectedCard La carta seleccionada por el usuario para generar la predicción.
+     * @return Una cadena con la predicción completa o un mensaje de error si los datos no son válidos.
+     */
+
     class GeneratePrediction
     {
         public static Random random = new Random();

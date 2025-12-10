@@ -6,6 +6,17 @@ namespace Functions
     {
         private static readonly Random random = new Random();
 
+         /**
+         * Devuelve una frase aleatoria asociada a una palabra clave.
+         * Contiene varias categorías de frases (Aventura, Habilidad, Intuición, etc.).
+         * Si la palabra clave no se encuentra, devuelve una frase por defecto.
+         * 
+         * @param palabraClave La categoría de frase que se desea obtener. Puede ser
+         *                     "Aventura", "Habilidad", "Intuición", etc. Si no existe,
+         *                     se selecciona la categoría por defecto.
+         * @return Una frase aleatoria correspondiente a la categoría indicada.
+         */
+         
         public static string GetRandomPhrase(string palabraClave)
         {
 
