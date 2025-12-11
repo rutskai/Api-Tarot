@@ -18,8 +18,10 @@ class TarotApi {
    *  - Obtener una carta aleatoria y marcarla como utilizada (/tarot/random)
    *  - Obtener todas las cartas que ya fueron utilizadas (/tarot/utilizadas)
    *  - Actualizar información de una carta específica (/tarot/update)
+   *  - Reiniciar todas las cartas a su estado inicial (/tarot/reset)
    *
-   * Los datos se almacenan en memoria y se guardan en el archivo "tarot.json".
+   * Los datos se almacenan en memoria y se guardan en el archivo "tarot.json",
+   * incluyendo el estado de cada carta ("utilizada").
    * La API corre en http://localhost:3000/tarot
    */
 
@@ -134,18 +136,31 @@ class TarotApi {
 
     return cards;
   }
+   
 }
 
 
+
+fs.writeFileSync(FILE_PATH, JSON.stringify(TarotApi.loadCards(), null, 2), "utf-8");
+let cards = JSON.parse(fs.readFileSync(FILE_PATH, "utf-8"));
+
+
+app.get("/tarot/reset", (req, res) => {
+
+  cards = TarotApi.loadCards().map(c => ({
+    ...c,
+    estado: "No utilizada"  
+  }));
+
+  fs.writeFileSync(FILE_PATH, JSON.stringify(cards, null, 2), "utf-8");
+
+  res.json({ mensaje: "Cartas reseteadas", cards });
+});
 
 app.get("/tarot", (req, res) => {
   res.json(cards);
 });
 
-app.get("/tarot/reset", (req, res) => {
- cards = TarotApi.loadCards().map(c => ({ ...c, estado: "" }));
-fs.writeFileSync(FILE_PATH, JSON.stringify(cards, null, 2), "utf-8");
-});
 
 app.get("/tarot/random", (req, res) => {
   if (cards.length === 0) {
@@ -153,8 +168,7 @@ app.get("/tarot/random", (req, res) => {
   }
 
   const randomIndex = Math.floor(Math.random() * cards.length);
-  cards[randomIndex].estado = "utilizada";
-  console.log(cards);
+  cards[randomIndex].estado = "Utilizada";
 
   fs.writeFileSync(FILE_PATH, JSON.stringify(cards, null, 2), "utf-8");
   res.json({ CardSelected: cards[randomIndex] });
@@ -166,7 +180,7 @@ app.get("/tarot/utilizadas", (req, res) => {
     return res.status(404).json({ error: "No hay cartas disponibles" });
   }
 
-  const utilizadas = cards.filter((card) => card.estado === "utilizada");
+  const utilizadas = cards.filter((card) => card.estado === "Utilizada");
 
   res.json(utilizadas);
 });
