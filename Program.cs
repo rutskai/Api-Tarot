@@ -9,6 +9,7 @@ class Program
         {
             Process.Start("node", @"./Functions/Tarotapi.js");
             await Task.Delay(2000);
+            await ResetDeck.ResetDeckApi();
             await Menu.GetMenu();
         }
         catch (Exception e)
