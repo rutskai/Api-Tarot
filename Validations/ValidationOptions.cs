@@ -4,6 +4,20 @@ namespace Validations
 {
    class ValidationOptions
    {
+
+       /**
+         * Valida que la opción ingresada sea correcta.
+         *
+         * Reglas de validación:
+         *  - Elimina espacios al inicio y final, y convierte la entrada a minúsculas.
+         *  - La entrada debe ser un nombre válido según CheckName (solo letras).
+         *  - Solo se permiten las opciones "s" (sí) o "n" (no).
+         *  - Si la entrada no es válida, solicita al usuario que ingrese nuevamente hasta obtener un valor correcto.
+         *
+         * @param name La opción ingresada por el usuario.
+         * @return La opción validada ("s" o "n").
+         */
+         
        public static string IsValidOption(string name)
         {
             name = name.Trim().ToLower();
