@@ -6,7 +6,7 @@ namespace Functions
     class Menu
     {
 
-            /**
+        /**
          * Muestra el menú principal de la aplicación de tarot.
          * Solicita el nombre del usuario, inicia la tirada de cartas
          * y muestra la carta seleccionada junto con su significado y predicción.
@@ -17,8 +17,7 @@ namespace Functions
          */
 
         public static async Task GetMenu(string? name = null)
-        {
-          
+        {      
 
              var cards = await GetApi.GetApiTarot();
 

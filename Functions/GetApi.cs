@@ -10,7 +10,7 @@ namespace Functions
          * Realiza una petición HTTP GET al endpoint http://localhost:3000/tarot,
          * deserializa la respuesta JSON a una lista de objetos Card y valida los datos.
          * 
-         * @return List< Models.Card> Una lista de cartas del tarot. Si ocurre un error en la petición
+         * @return List<Models.Card> Una lista de cartas del tarot. Si ocurre un error en la petición
          *         o la validación falla, retorna una lista vacía.
          */
 
