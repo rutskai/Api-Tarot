@@ -18,7 +18,7 @@ namespace Functions
 
         public static async Task GetMenu(string? name = null)
         {
-             await ResetDeck();
+          
 
              var cards = await GetApi.GetApiTarot();
 
@@ -53,6 +53,7 @@ namespace Functions
             if (option == "s")
             {
                 await GetMenu(name);
+                
             }
             else
             {
