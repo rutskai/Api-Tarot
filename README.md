@@ -23,10 +23,9 @@ Aplicación de Tarot que combina **C#** y **Node.js/Express**. Permite obtener c
       - dotnet run
    
 # Ejemplo de salida del programa
-<img width="801" height="105" alt="image" src="https://github.com/user-attachments/assets/00f4efa3-f081-45a9-a1f5-91d6876b776b" />
+<img width="880" height="137" alt="image" src="https://github.com/user-attachments/assets/5db34884-17fe-4bdb-9c7b-04bc469d21b1" />
+<img width="880" height="206" alt="image" src="https://github.com/user-attachments/assets/afaaa009-cabf-435a-a8ca-245fa20a5687" />
 
-
-<img width="801" height="205" alt="image" src="https://github.com/user-attachments/assets/7e8d6220-5704-4a7c-be80-a1a82d428a01" />
 
 
 
@@ -106,7 +105,7 @@ Cada carta tiene las siguientes propiedades:
 
 - Ejemplo de Salida:
 
-<img width="518" height="127" alt="image" src="https://github.com/user-attachments/assets/28770b8e-73bf-430b-86e2-bd6bf0efd6df" />
+<img width="489" height="128" alt="image" src="https://github.com/user-attachments/assets/de190c10-883a-41da-b9d6-f8dc721e2722" />
 
 ---
 
@@ -123,7 +122,10 @@ Cada carta tiene las siguientes propiedades:
 
 - Ejemplo de salida:
 
-<img width="1038" height="70" alt="image" src="https://github.com/user-attachments/assets/54d917a6-88dc-44be-965b-cc15e26b5745" />
+
+<img width="932" height="87" alt="image" src="https://github.com/user-attachments/assets/02e3c920-7387-49b3-ba8c-c533ac846392" />
+
+
 
 ---
 
