@@ -29,7 +29,7 @@ namespace Functions
             Console.WriteLine($"\nEncantado/a {name}!");
             }
 
-            Console.WriteLine($"\nVamos a predecir tu futuro! Presiona enter para iniciar la tirada.");
+            Console.WriteLine($"Vamos a predecir tu futuro! Presiona enter para iniciar la tirada.");
             Console.ReadLine();
 
             var selectedCard = await SelectionCard.GetSelectionCardAsync();
@@ -41,9 +41,11 @@ namespace Functions
                 return;
             }
 
-            Console.WriteLine($"Carta del día seleccionada: {selectedCard.Nombre}  ");
+            Console.WriteLine("==================================================");
+            Console.WriteLine($"Carta del día seleccionada: {selectedCard.Nombre}");
             Console.WriteLine($"Significado: {selectedCard.Significado}");
             Console.WriteLine($"Tipo: {selectedCard.Arquetipo}");
+            Console.WriteLine("==================================================");
             Console.WriteLine(  GeneratePrediction.GetPrediction(name, cards, selectedCard));
 
             Console.WriteLine("Deseas realizar otra tirada? (s/n)");
