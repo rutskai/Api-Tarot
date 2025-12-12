@@ -46,7 +46,24 @@ Aplicación de Tarot que combina **C#** y **Node.js/Express**. Permite obtener c
 - **IMPORTANTE**: El endpoint tarot/update/ se encuentra en UpdateCard.cs, es una gestión interna, si se quiere actualizar alguna carta hay que ejecutar este archivo en específico.
 - **Ejecución**: dotnet run
 
----
+# Json tarot.json
+El archivo tarot.json contiene la información de todas las cartas del tarot utilizada por el servidor Node.js/Express. 
+Sirve para informar sobre los datos que se manejan y cómo se utilizan.
+Cada carta tiene las siguientes propiedades:
+
+- id: Identificador único de la carta.
+- nombre: Nombre de la carta.
+- significado: Significado de la carta.
+- palabraClave: Palabra clave asociada (ej. "Aventura", "Habilidad").
+- arquetipo: Tipo o rol de la carta.
+- estado: "No utilizada" o "Utilizada" según si la carta ya fue seleccionada en una tirada.
+  
+1. Al iniciar Tarotapi.js, se crea o reinicia tarot.json con todas las cartas en estado "No utilizada".
+2. Al resetear las cartas con ResetDeck.ResetDeckApi(), cambia el estado de todas las cartas a "No utilizada" y se guarda en el JSON.
+3. Se selecciona una carta aleatoria en GetSelectionCardAsync() y marca la carta seleccionada como "Utilizada" y actualiza el JSON.
+4. El endpoint /tarot/utilizadas sirve para informar sobre el estado de las cartas, se puede hacer así o consultando el JSON.
+  
+
 # Funciones
 
 **Flujo Principal**
